@@ -7,9 +7,9 @@
     <!-- Bootstrap 3.3.2 -->
     <link href="/assets/public/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- Font Awesome Icons -->
-    <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Ionicons -->
-    <link href="//cdn.bootcss.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet">
+    <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
     <!-- Theme style -->
     <link href="/assets/public/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -57,12 +57,12 @@
 
                                 <p>
                                     {$user->email}
-                                    <small>加入时间：{$user->regDate()}</small>
+                                    <small>加入時間：{$user->regDate()}</small>
                                 </p>
                             </li>
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="/user/profile" class="btn btn-default btn-flat">个人信息</a>
+                                    <a href="/user/profile" class="btn btn-default btn-flat">個人信息</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="/user/logout" class="btn btn-default btn-flat">退出</a>
@@ -97,13 +97,13 @@
             <ul class="sidebar-menu">
                 <li>
                     <a href="/user">
-                        <i class="fa fa-dashboard"></i> <span>用户中心</span>
+                        <i class="fa fa-dashboard"></i> <span>用戶中心</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="/user/node">
-                        <i class="fa fa-sitemap"></i> <span>节点列表</span>
+                        <i class="fa fa-sitemap"></i> <span>節點列表</span>
                     </a>
                 </li>
 
@@ -115,20 +115,25 @@
 
                 <li>
                     <a href="/user/trafficlog">
-                        <i class="fa fa-history"></i> <span>流量记录</span>
+                        <i class="fa fa-history"></i> <span>流量記錄</span>
                     </a>
                 </li>
 
+ 				<li>
+                    <a href="/user/buytraffic">
+                        <i class="fa fa-shopping-cart"></i> <span>購買流量</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="/user/edit">
-                        <i class="fa  fa-pencil"></i> <span>修改资料</span>
+                        <i class="fa  fa-pencil"></i> <span>修改資料</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="/user/invite">
-                        <i class="fa fa-users"></i> <span>邀请好友</span>
+                        <i class="fa fa-users"></i> <span>邀請好友</span>
                     </a>
                 </li>
 

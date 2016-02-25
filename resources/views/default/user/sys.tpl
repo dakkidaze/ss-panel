@@ -3,7 +3,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            统计信息
+            統計信息
             <small>A</small>
         </h1>
     </section>

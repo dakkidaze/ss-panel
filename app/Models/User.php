@@ -30,6 +30,15 @@ class User extends Model
         return $this->attributes['is_admin'];
     }
 
+	public function canChangeSSMethod(){
+		if (Config::get('changeSSMethod') == 'true'){
+			return true;
+		}else{
+			return false;
+		}
+        
+    }
+
     public function lastSsTime(){
         return Tools::toDateTime($this->attributes['t']);
     }
@@ -98,6 +107,12 @@ class User extends Model
         $transfer_enable = $this->attributes['transfer_enable'];
         return Tools::flowAutoShow($transfer_enable-$total);
     }
+	
+	public function guessUnusedTraffic($amount){
+        $total = $this->attributes['u'] + $this->attributes['d'];
+        $transfer_enable = $this->attributes['transfer_enable'];
+        return Tools::flowAutoShow($transfer_enable-$total+$amount);
+    }
 
     public function isAbleToCheckin(){
         $last = $this->attributes['last_check_in_time'];
@@ -117,5 +132,9 @@ class User extends Model
         $uid = $this->attributes['id'];
         return InviteCode::where('user_id',$uid)->get();
     }
+	
+	public function credit(){
+		return Tools::toCredit($this->attributes['credit']);
+	}
 
 }

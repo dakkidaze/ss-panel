@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            删除我的帐号
+            刪除我的帳號
             <small>Deactive my account</small>
         </h1>
     </section>
@@ -15,7 +15,7 @@
             <div class="col-sm-12">
                 <div id="msg-error" class="alert alert-warning alert-dismissable" style="display:none">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4><i class="icon fa fa-warning"></i> 出错了!</h4>
+                    <h4><i class="icon fa fa-warning"></i> 出錯了!</h4>
 
                     <p id="msg-error-p"></p>
                 </div>
@@ -30,7 +30,7 @@
                         <div class="box-header">
                             <i class="fa fa-user"></i>
 
-                            <h3 class="box-title">输入当前密码以验证身份</h3>
+                            <h3 class="box-title">輸入當前密碼以驗證身份</h3>
                         </div>
                         <div id="msg-success" class="alert alert-info alert-dismissable" style="display:none">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -39,12 +39,12 @@
                             <p id="msg-success-p"></p>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="当前密码(必填)" id="passwd">
+                            <input type="password" class="form-control" placeholder="當前密碼(必填)" id="passwd">
                         </div>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button type="submit" id="kill" class="btn btn-danger">删除我的帐号</button>
+                        <button type="submit" id="kill" class="btn btn-danger">刪除我的帳號</button>
                     </div>
 
                 </div>
@@ -54,9 +54,9 @@
                 <div class="callout callout-warning">
                     <h4>注意！</h4>
 
-                    <p>帐号删除后，您的所有数据都会被<b>真实地</b>删除。</p>
+                    <p>帳號刪除後，您的所有數據都會被<b>真實地</b>刪除。</p>
 
-                    <p>如果想重新使用本网站提供的服务，您需要重新注册。</p>
+                    <p>如果想重新使用本網站提供的服務，您需要重新註冊。</p>
 
                 </div>
             </div>
@@ -93,7 +93,7 @@
                     }
                 },
                 error: function (jqXHR) {
-                    alert("发生错误：" + jqXHR.status);
+                    alert("發生錯誤：" + jqXHR.status);
                 }
             })
         })

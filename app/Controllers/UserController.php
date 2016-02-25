@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\InviteCode;
 use App\Services\Auth;
-use App\Models\Node,App\Models\TrafficLog,App\Models\CheckInLog;
+use App\Models\Node,App\Models\TrafficLog,App\Models\Packages,App\Models\CheckInLog,App\Models\PurchaseHistory;
 use App\Services\Config;
 use App\Utils\Hash,App\Utils\Tools;
 
@@ -154,6 +154,31 @@ class UserController extends BaseController
         return $this->echoJson($response, $res);
     }
 
+	public function updateBuypackage($request, $response, $args)
+    {
+        $user = Auth::getUser();
+        $traffpackage = $request->getParam('traffpackage');
+        $package = Packages::find($traffpackage);
+		if(($user->credit - $package->price) >= 0){
+        $user->transfer_enable = $user->transfer_enable + $package->package_traffic_m;
+		$user->credit = $user->credit - $package->price;
+        $user->save();
+		$ph = new PurchaseHistory();
+		$ph->user_id = $user->id;
+		$ph->package_info = ($package);
+		$ph->user_snapshot = ($user);
+		
+		$ph->save();
+		$res['ret'] = 1;
+		$res['msg'] = "可用流量為".$user->unusedTraffic()." (增加了".$package->package_traffic_m().")";
+		}else{
+			$res['ret'] = 0;
+			$res['msg'] = "結餘不足";
+		}
+        
+        return $this->echoJson($response, $res);
+    }
+
     public function logout($request, $response, $args)
     {
         Auth::logout();
@@ -208,5 +233,22 @@ class UserController extends BaseController
         $traffic = TrafficLog::where('user_id',$this->user->id)->orderBy('id', 'desc')->paginate(15,['*'],'page',$pageNum);
         $traffic->setPath('/user/trafficlog');
         return $this->view()->assign('logs', $traffic)->display('user/trafficlog.tpl');
+    }
+	
+	public function buyTraffic($request, $response, $args){
+		if(isset($args['id'])){
+			$id = $args['id'];
+			
+			$package = Packages::find($id);
+			return $this->view()->assign('data', array('package'=>$package, 'credit'=>$this->user->credit, 'id'=>$id))->display('user/buytraffic.tpl');
+		}else{
+        $pageNum = 1;
+        if(isset($request->getQueryParams()["page"])){
+            $pageNum = $request->getQueryParams()["page"];
+        }
+        $package = Packages::where('package_enable','1')->orderBy('price', 'asc')->paginate(15,['*'],'page',$pageNum);
+        $package->setPath('/user/buytraffic');
+        return $this->view()->assign('packages', $package)->display('user/buytraffic.tpl');
+		}
     }
 }

@@ -5,7 +5,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            节点列表
+            節點列表
             <small>Node List</small>
         </h1>
     </section>
@@ -17,8 +17,8 @@
             <div class="col-md-12">
                 <div class="callout callout-warning">
                     <h4>注意!</h4>
-                    <p>请勿在任何地方公开节点地址！</p>
-                    <p>流量比例为0.5及使用1000MB按照500MB流量记录记录结算.</p>
+                    <p>請勿在任何地方公開節點地址！</p>
+                    <p>流量比例為0.5及使用1000MB按照500MB流量記錄記錄結算.</p>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                     <div class="box-header">
                         <i class="fa fa-th-list"></i>
 
-                        <h3 class="box-title">节点</h3>
+                        <h3 class="box-title">節點</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -55,7 +55,7 @@
                                                         <div class="col-xs-8 col-sm-4"><span
                                                                     class="label label-danger">{$user->port}</span>
                                                         </div>
-                                                        <div class="col-xs-4 col-sm-2">密码：</div>
+                                                        <div class="col-xs-4 col-sm-2">密碼：</div>
                                                         <div class="col-xs-8 col-sm-4"><span
                                                                     class="label label-danger">{$user->passwd}</span>
                                                         </div>

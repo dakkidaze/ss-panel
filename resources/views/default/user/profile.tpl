@@ -17,19 +17,19 @@
                     <div class="box-header">
                         <i class="fa fa-user"></i>
 
-                        <h3 class="box-title">我的帐号</h3>
+                        <h3 class="box-title">我的帳號</h3>
                     </div>
                     <div class="box-body">
                         <dl class="dl-horizontal">
-                            <dt>用户名</dt>
+                            <dt>用戶名</dt>
                             <dd>{$user->user_name}</dd>
-                            <dt>邮箱</dt>
+                            <dt>郵箱</dt>
                             <dd>{$user->email}</dd>
                         </dl>
 
                     </div>
                     <div class="box-footer">
-                        <a class="btn btn-danger btn-sm" href="kill">删除我的账户</a>
+                        <a class="btn btn-danger btn-sm" href="kill">刪除我的賬戶</a>
                     </div>
                     <!-- /.box -->
                 </div>

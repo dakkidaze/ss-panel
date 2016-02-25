@@ -5,7 +5,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            用户中心
+            用戶中心
             <small>User Center</small>
         </h1>
     </section>
@@ -23,9 +23,9 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <p>流量不会重置，可以通过签到获取流量。</p>
+                        <p>流量不會重置，可以通過簽到獲取流量。</p>
 
-                        <p>每次签到可以获取{$config['checkinMin']}~{$config['checkinMax']}MB流量。</p>
+                        <p>每次簽到可以獲取{$config['checkinMin']}~{$config['checkinMax']}MB流量。</p>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -38,7 +38,7 @@
                     <div class="box-header">
                         <i class="fa fa-exchange"></i>
 
-                        <h3 class="box-title">流量使用情况</h3>
+                        <h3 class="box-title">帳戶使用情況</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -54,12 +54,14 @@
                             </div>
                         </div>
                         <dl class="dl-horizontal">
-                            <dt>总流量</dt>
+                            <dt>總流量</dt>
                             <dd>{$user->enableTraffic()}</dd>
                             <dt>已用流量</dt>
                             <dd>{$user->usedTraffic()}</dd>
-                            <dt>剩余流量</dt>
+                            <dt>剩餘流量</dt>
                             <dd>{$user->unusedTraffic()}</dd>
+                            <dt>剩餘結餘</dt>
+                            <dd>{$user->credit()}</dd>
                         </dl>
                     </div>
                     <!-- /.box-body -->
@@ -73,19 +75,19 @@
                     <div class="box-header">
                         <i class="fa fa-pencil"></i>
 
-                        <h3 class="box-title">签到获取流量</h3>
+                        <h3 class="box-title">簽到獲取流量</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <p> 每{$config['checkinTime']}小时可以签到一次。</p>
+                        <p> 每{$config['checkinTime']}小時可以簽到一次。</p>
 
-                        <p>上次签到时间：<code>{$user->lastCheckInTime()}</code></p>
+                        <p>上次簽到時間：<code>{$user->lastCheckInTime()}</code></p>
                         {if $user->isAbleToCheckin() }
                             <p id="checkin-btn">
-                                <button id="checkin" class="btn btn-success  btn-flat">签到</button>
+                                <button id="checkin" class="btn btn-success  btn-flat">簽到</button>
                             </p>
                         {else}
-                            <p><a class="btn btn-success btn-flat disabled" href="#">不能签到</a></p>
+                            <p><a class="btn btn-success btn-flat disabled" href="#">不能簽到</a></p>
                         {/if}
                         <p id="checkin-msg"></p>
                     </div>
@@ -100,14 +102,14 @@
                     <div class="box-header">
                         <i class="fa  fa-paper-plane"></i>
 
-                        <h3 class="box-title">连接信息</h3>
+                        <h3 class="box-title">連接信息</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <dl class="dl-horizontal">
                             <dt>端口</dt>
                             <dd>{$user->port}</dd>
-                            <dt>密码</dt>
+                            <dt>密碼</dt>
                             <dd>{$user->passwd}</dd>
                             <!--
                             <dt>加密方式</dt>
@@ -140,7 +142,7 @@
                     $("#checkin-btn").hide();
                 },
                 error: function (jqXHR) {
-                    alert("发生错误：" + jqXHR.status);
+                    alert("發生錯誤：" + jqXHR.status);
                 }
             })
         })

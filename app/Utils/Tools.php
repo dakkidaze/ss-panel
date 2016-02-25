@@ -37,6 +37,10 @@ class Tools
         return $traffic*$gb;
     }
 
+	static function toCredit($credit){
+        $cr = Config::get('front_currency')." ".$credit.Config::get('end_currency');
+        return $cr;
+    }
     //获取随机字符串
     public static function genRandomChar( $length = 8 ) {
         // 密码字符集，可任意添加你需要的字符
@@ -57,6 +61,16 @@ class Tools
     // Unix time to Date Time
     public static function toDateTime($time){
         return date('Y-m-d H:i:s',$time);
+    }
+
+ 	// To Package Type
+    public static function toPackageType($type){
+    	switch($type){
+			case '0':{$typename='流量包';break;};
+			default:{$typename='無';break;}
+    	}
+        return $typename;
+
     }
 
     // check html

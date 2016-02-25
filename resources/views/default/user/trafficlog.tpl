@@ -5,7 +5,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            流量使用记录
+            流量使用記錄
             <small>Traffic Log</small>
         </h1>
     </section>
@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="callout callout-warning">
                     <h4>注意!</h4>
-                    <p>部分节点不支持流量记录.</p>
+                    <p>部分節點不支持流量記錄.</p>
                 </div>
             </div>
         </div>
@@ -28,11 +28,11 @@
                         <table class="table table-hover">
                             <tr>
                                 <th>ID</th>
-                                <th>使用节点</th>
+                                <th>使用節點</th>
                                 <th>倍率</th>
-                                <th>实际使用流量</th>
-                                <th>结算流量</th>
-                                <th>记录时间</th>
+                                <th>實際使用流量</th>
+                                <th>結算流量</th>
+                                <th>記錄時間</th>
                             </tr>
                             {foreach $logs as $log}
                                 <tr>

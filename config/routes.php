@@ -57,9 +57,12 @@ $app->group('/user', function () {
     $this->get('/edit', 'App\Controllers\UserController:edit');
     $this->post('/password', 'App\Controllers\UserController:updatePassword');
     $this->post('/sspwd', 'App\Controllers\UserController:updateSsPwd');
+	$this->post('/buy/buypackage', 'App\Controllers\UserController:updateBuypackage');
     $this->post('/method', 'App\Controllers\UserController:updateMethod');
     $this->get('/sys', 'App\Controllers\UserController:sys');
     $this->get('/trafficlog', 'App\Controllers\UserController:trafficLog');
+	$this->get('/buytraffic', 'App\Controllers\UserController:buyTraffic');
+	$this->get('/buy/{id}', 'App\Controllers\UserController:buyTraffic');
     $this->get('/kill', 'App\Controllers\UserController:kill');
     $this->post('/kill', 'App\Controllers\UserController:handleKill');
     $this->get('/logout', 'App\Controllers\UserController:logout');
@@ -115,6 +118,7 @@ $app->group('/api', function () {
     $this->post('/token', 'App\Controllers\ApiController:newToken');
     $this->get('/node', 'App\Controllers\ApiController:node')->add(new Api());
     $this->get('/user/{id}', 'App\Controllers\ApiController:userInfo')->add(new Api());
+	$this->post('/payment/{invoice}', 'App\Controllers\PaymentController:payCallback');
 });
 
 // mu
