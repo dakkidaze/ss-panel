@@ -75,6 +75,14 @@ class ApiController extends BaseController
         return $this->echoJson($response,$res);
     }
 
+    public function nodeDraft($request, $response, $args){
+        $nodes = Node::where('type',1)->orderBy('sort')->select('id', 'name','status', 'gps_land', 'gps_long')->get();
+        $res['ret'] = 1;
+        $res['msg'] = "ok";
+        $res['data'] = $nodes;
+        return $this->echoJson($response,$res);
+    }
+
     public function userInfo($request, $response, $args){
         $id = $args['id'];
         $accessToken = Helper::getTokenFromReq($request);

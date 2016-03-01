@@ -181,6 +181,8 @@ class UserController extends BaseController
 
     public function logout($request, $response, $args)
     {
+    	session_start();
+    	session_destroy();
         Auth::logout();
         $newResponse = $response->withStatus(302)->withHeader('Location', '/auth/login');
         return $newResponse;
@@ -230,7 +232,7 @@ class UserController extends BaseController
         if(isset($request->getQueryParams()["page"])){
             $pageNum = $request->getQueryParams()["page"];
         }
-        $traffic = TrafficLog::where('user_id',$this->user->id)->orderBy('id', 'desc')->paginate(15,['*'],'page',$pageNum);
+        $traffic = TrafficLog::where('user_id',$this->user->port)->orderBy('id', 'desc')->paginate(15,['*'],'page',$pageNum);
         $traffic->setPath('/user/trafficlog');
         return $this->view()->assign('logs', $traffic)->display('user/trafficlog.tpl');
     }
@@ -250,5 +252,10 @@ class UserController extends BaseController
         $package->setPath('/user/buytraffic');
         return $this->view()->assign('packages', $package)->display('user/buytraffic.tpl');
 		}
+    }
+	public function addCredit($request, $response, $args){
+		
+        return $this->view()->display('user/addcredit.tpl');
+		
     }
 }

@@ -22,6 +22,14 @@ class AuthController extends BaseController
 
     public function login()
     {
+    	session_start();
+    	
+    	if((Config::get('shell')=='true')&&(!isset($_SESSION['isstartss']) || !isset($_SESSION['authtime']) || ($_SESSION['authtime'] < (time()-Config::get('authtimeout'))))){
+        	return $this->view()->display('baidu.tpl');
+		}else{
+			$_SESSION['authtime'] = time();
+		}
+		
         return $this->view()->display('auth/login.tpl');
     }
 
@@ -38,13 +46,13 @@ class AuthController extends BaseController
 
         if ($user == null){
             $rs['ret'] = 0;
-            $rs['msg'] = "401 邮箱或者密码错误";
+            $rs['msg'] = "401 郵箱或者密碼錯誤";
             return $response->getBody()->write(json_encode($rs));
         }
 
         if (!Hash::checkPassword($user->pass,$passwd)){
             $rs['ret'] = 0;
-            $rs['msg'] = "402 邮箱或者密码错误";
+            $rs['msg'] = "402 郵箱或者密碼錯誤";
             return $response->getBody()->write(json_encode($rs));
         }
         // @todo
@@ -54,12 +62,20 @@ class AuthController extends BaseController
         }
         Auth::login($user->id,$time);
         $rs['ret'] = 1;
-        $rs['msg'] = "欢迎回来";
+        $rs['msg'] = "歡迎回來";
         return $response->getBody()->write(json_encode($rs));
     }
 
     public function register($request, $response, $next)
     {
+    	session_start();
+    	
+    	if((Config::get('shell')=='true')&&(!isset($_SESSION['isstartss']) || !isset($_SESSION['authtime']) || ($_SESSION['authtime'] < (time()-Config::get('authtimeout'))))){
+	        	return $this->view()->display('baidu.tpl');
+		}else{
+			$_SESSION['authtime'] = time();
+		}
+		
         $ary = $request->getQueryParams();
         $code = "";
         if(isset($ary['code'])){
@@ -80,27 +96,27 @@ class AuthController extends BaseController
         $c = InviteCode::where('code',$code)->first();
         if ( $c == null) {
             $res['ret'] = 0;
-            $res['msg'] = "邀请码无效";
+            $res['msg'] = "邀請碼無效";
             return $response->getBody()->write(json_encode($res));
         }
 
         // check email format
         if(!Check::isEmailLegal($email)){
             $res['ret'] = 0;
-            $res['msg'] = "邮箱无效";
+            $res['msg'] = "郵箱無效";
             return $response->getBody()->write(json_encode($res));
         }
         // check pwd length
         if(strlen($passwd)<8){
             $res['ret'] = 0;
-            $res['msg'] = "密码太短";
+            $res['msg'] = "密碼太短";
             return $response->getBody()->write(json_encode($res));
         }
 
         // check pwd re
         if($passwd != $repasswd){
             $res['ret'] = 0;
-            $res['msg'] = "两次密码输入不符";
+            $res['msg'] = "兩次密碼輸入不符";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -108,7 +124,7 @@ class AuthController extends BaseController
         $user = User::where('email',$email)->first();
         if ( $user != null) {
             $res['ret'] = 0;
-            $res['msg'] = "邮箱已经被注册了";
+            $res['msg'] = "郵箱已經被註冊了";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -128,12 +144,12 @@ class AuthController extends BaseController
 
         if($user->save()){
             $res['ret'] = 1;
-            $res['msg'] = "注册成功";
+            $res['msg'] = "註冊成功";
             $c->delete();
             return $response->getBody()->write(json_encode($res));
         }
         $res['ret'] = 0;
-        $res['msg'] = "未知错误";
+        $res['msg'] = "未知錯誤";
         return $response->getBody()->write(json_encode($res));
     }
 

@@ -61,8 +61,16 @@
                             <dt>剩餘流量</dt>
                             <dd>{$user->unusedTraffic()}</dd>
                             <dt>剩餘結餘</dt>
-                            <dd>{$user->credit()}</dd>
+                            <dd>{$user->credit()}
+                            	<div>
+                            		{if $user->IsAdmin()}
+                            		<a class="btn btn-info btn-sm" href="/user/addcredit">充值</a>
+                            		{/if}
+            					</div>
+        					</dd>
+                            
                         </dl>
+                        
                     </div>
                     <!-- /.box-body -->
                 </div>

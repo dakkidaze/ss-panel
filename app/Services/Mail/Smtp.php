@@ -14,7 +14,7 @@ class Smtp
     public function __construct(){
         $this->config = $this->getConfig();
         $mail = new PHPMailer;
-        //$mail->SMTPDebug = 3;                               // Enable verbose debug output
+        $mail->SMTPDebug = 0;                               // Enable verbose debug output
         $mail->isSMTP();                                      // Set mailer to use SMTP
         $mail->Host = $this->config['host'];  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -26,7 +26,7 @@ class Smtp
         $this->mail = $mail;
     }
 
-    public function getConfig(){
+    public function getConfig(){	
         return [
             "host" => Config::get('smtp_host'),
             "username" => Config::get('smtp_username'),
@@ -40,7 +40,7 @@ class Smtp
     public function send($to,$subject,$text){
         $mail = $this->mail;
         $mail->addAddress($to);     // Add a recipient
-        // $mail->isHTML(true);
+        $mail->isHTML(true);
         $mail->Subject = $subject;
         $mail->Body    = $text;
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';

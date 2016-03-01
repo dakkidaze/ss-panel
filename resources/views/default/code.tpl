@@ -3,8 +3,8 @@
     <div class="container">
         <br><br>
         <div class="row center">
-            <h5>邀请码实时刷新</h5>
-            <h5>如遇到无邀请码请找已经注册的用户获取。</h5>
+            <h5>邀請碼實時刷新</h5>
+            <h5>如遇到無邀請碼請找已經註冊的用戶獲取。</h5>
         </div>
     </div>
 </div>
@@ -14,14 +14,14 @@
         <!--   Icon Section   -->
         <div class="row">
             <div class="row marketing">
-                <h2 class="sub-header">邀请码</h2>
+                <h2 class="sub-header">邀請碼</h2>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>###</th>
-                            <th>邀请码 (点击邀请码进入注册页面)</th>
-                            <th>状态</th>
+                            <th>邀請碼 (點擊邀請碼進入註冊頁面)</th>
+                            <th>狀態</th>
                         </tr>
                         </thead>
                         <tbody>

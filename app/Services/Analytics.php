@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\Node;
 use App\Utils\Tools;
+use App\Services\Config;
 
 class Analytics
 {
@@ -16,6 +17,11 @@ class Analytics
     public function getCheckinUser()
     {
         return User::where('last_check_in_time', '>', 0)->count();
+    }
+
+	public function getLateCheckinUser()
+    {
+        return User::where('last_check_in_time', '<', Config::get('latecheckin')*86400)->count();
     }
 
     public function getTrafficUsage()

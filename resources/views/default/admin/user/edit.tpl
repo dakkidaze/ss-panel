@@ -52,7 +52,7 @@
                                             <input class="form-control" id="pass" value="" placeholder="不修改时留空">
                                         </div>
                                     </div>
-
+									
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">是否管理员</label>
 
@@ -159,6 +159,15 @@
                                                    value="{$user->ref_by}" readonly>
                                         </div>
                                     </div>
+                                    
+                                    <!-- <div class="form-group">
+                                        <label class="col-sm-3 control-label">余額</label>
+
+                                        <div class="col-sm-9">
+                                            <input class="form-control" id="credit" type="number"
+                                                   value="{$user->credit}">
+                                        </div>
+                                    </div> -->
                                 </fieldset>
                             </div>
                         </div>
@@ -194,7 +203,8 @@
                     method: $("#method").val(),
                     enable: $("#enable").val(),
                     is_admin: $("#is_admin").val(),
-                    ref_by: $("#ref_by").val()
+                    ref_by: $("#ref_by").val(),
+                    credit: $("#credit").val()
                 },
                 success: function (data) {
                     if (data.ret) {

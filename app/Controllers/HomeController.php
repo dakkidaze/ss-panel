@@ -14,12 +14,40 @@ class HomeController extends BaseController
 
     public function index()
     {
-        return $this->view()->display('index.tpl');
+    	session_start();
+    	if((Config::get('shell')=='true')&&(!isset($_SESSION['isstartss']) || !isset($_SESSION['authtime']) || ($_SESSION['authtime'] < (time()-Config::get('authtimeout'))))){
+        	return $this->view()->display('baidu.tpl');
+		}else{
+			$_SESSION['authtime'] = time();
+		}
+		
+			return $this->view()->display('index.tpl');
+			
+		
     }
-
+    public function baidu($request, $response, $args)
+    {
+    	// var_dump($request);
+    	session_start();
+    	if($request->getParam('wd')=="幽谷清泉"){
+    		$_SESSION['isstartss'] = true;
+			$_SESSION['authtime'] = time();
+        	return $this->view()->display('index.tpl');
+		}else{
+			// return $this->view()->display('baidu.tpl');
+			$newResponse = $response->withStatus(302)->withHeader('Location', 'https://www.baidu.com/baidu?myselectvalue=0&word='.$request->getParam('wd'));
+			return $newResponse;
+		}
+    }
     public function code()
     {
-        $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
+    	session_start();
+    	if((Config::get('shell')=='true')&&(!isset($_SESSION['isstartss']) || !isset($_SESSION['authtime']) || ($_SESSION['authtime'] < (time()-Config::get('authtimeout'))))){
+        	return $this->view()->display('baidu.tpl');
+		}else{
+			$_SESSION['authtime'] = time();
+		}
+		        $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
         return $this->view()->assign('codes', $codes)->display('code.tpl');
     }
 
@@ -30,6 +58,12 @@ class HomeController extends BaseController
 
     public function tos()
     {
+    	session_start();
+    	if((Config::get('shell')=='true')&&(!isset($_SESSION['isstartss']) || !isset($_SESSION['authtime']) || ($_SESSION['authtime'] < (time()-Config::get('authtimeout'))))){
+        	return $this->view()->display('baidu.tpl');
+		}else{
+			$_SESSION['authtime'] = time();
+		}
         return $this->view()->display('tos.tpl');
     }
 

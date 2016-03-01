@@ -41,6 +41,7 @@ $app->add(new WhoopsMiddleware);
 
 // Home
 $app->get('/', 'App\Controllers\HomeController:index');
+$app->get('/s', 'App\Controllers\HomeController:baidu');
 $app->get('/code', 'App\Controllers\HomeController:code');
 $app->get('/tos', 'App\Controllers\HomeController:tos');
 
@@ -58,6 +59,7 @@ $app->group('/user', function () {
     $this->post('/password', 'App\Controllers\UserController:updatePassword');
     $this->post('/sspwd', 'App\Controllers\UserController:updateSsPwd');
 	$this->post('/buy/buypackage', 'App\Controllers\UserController:updateBuypackage');
+	$this->get('/addcredit', 'App\Controllers\UserController:addCredit');
     $this->post('/method', 'App\Controllers\UserController:updateMethod');
     $this->get('/sys', 'App\Controllers\UserController:sys');
     $this->get('/trafficlog', 'App\Controllers\UserController:trafficLog');
@@ -89,6 +91,8 @@ $app->group('/password', function () {
 $app->group('/admin', function () {
     $this->get('', 'App\Controllers\AdminController:index');
     $this->get('/', 'App\Controllers\AdminController:index');
+	$this->get('/trafficlog', 'App\Controllers\AdminController:trafficLog');
+	
     // Node Mange
     $this->get('/node', 'App\Controllers\Admin\NodeController:index');
     $this->get('/node/create', 'App\Controllers\Admin\NodeController:create');
@@ -100,6 +104,7 @@ $app->group('/admin', function () {
 
     // User Mange
     $this->get('/user', 'App\Controllers\Admin\UserController:index');
+	$this->get('/user/tool/{action}', 'App\Controllers\Admin\UserController:tools');
     $this->get('/user/{id}/edit', 'App\Controllers\Admin\UserController:edit');
     $this->put('/user/{id}', 'App\Controllers\Admin\UserController:update');
     $this->delete('/user/{id}', 'App\Controllers\Admin\UserController:delete');
@@ -117,6 +122,7 @@ $app->group('/api', function () {
     $this->get('/token/{token}', 'App\Controllers\ApiController:token');
     $this->post('/token', 'App\Controllers\ApiController:newToken');
     $this->get('/node', 'App\Controllers\ApiController:node')->add(new Api());
+	$this->get('/nodedraft', 'App\Controllers\ApiController:nodeDraft');
     $this->get('/user/{id}', 'App\Controllers\ApiController:userInfo')->add(new Api());
 	$this->post('/payment/{invoice}', 'App\Controllers\PaymentController:payCallback');
 });

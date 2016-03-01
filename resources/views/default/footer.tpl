@@ -1,24 +1,26 @@
-<footer class="page-footer orange">
+<footer class="page-footer green">
 	<div class="container">
 		<div class="row">
 			<div class="col l6 s12">
-				<h5 class="white-text">关于</h5>
-				<p class="grey-text text-lighten-4">本站提供某种帐号用于科学上网.</p>
+				<h5 class="white-text">關於</h5>
+				<p class="grey-text text-lighten-4">以愛衝破圍牆.</p>
 
 
 			</div>
 			<div class="col l3 s12">
-				<h5 class="white-text">用户</h5>
-				<ul>
-					<li><a class="white-text" href="/user">用户中心</a></li>
-					<li><a class="white-text" href="/auth/login">登录</a></li>
-					<li><a class="white-text" href="/auth/register">注册</a></li>
+				<h5 class="white-text">用戶</h5>
+				<ul>{if $user->isLogin}
+					<li><a class="white-text" href="/user">用戶中心</a></li>
+					{else}
+					<li><a class="white-text" href="/auth/login">登錄</a></li>
+					<li><a class="white-text" href="/auth/register">註冊</a></li>
+					{/if}
 				</ul>
 			</div>
 			<div class="col l3 s12">
-				<h5 class="white-text">页面</h5>
+				<h5 class="white-text">更多</h5>
 				<ul>
-					<li><a class="white-text" href="/code">邀请码</a></li>
+					<li><a class="white-text" href="/code">邀請碼</a></li>
 					<li><a class="white-text" href="/tos">TOS</a></li>
 				</ul>
 			</div>
@@ -26,8 +28,8 @@
 	</div>
 	<div class="footer-copyright">
 		<div class="container">
-			&copy; {$config["appName"]}  Powered by <a class="orange-text text-lighten-3" href="https://github.com/orvice/ss-panel">ss-panel</a> {$config["version"]}
-		 Theme by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+			&copy; {$config["appName"]}  Powered by <a class="orange-text text-lighten-3" href="https://github.com/orvice/ss-panel">SS-Panel</a> {$config["version"]}
+		 Theme by Materialize
 		</div>
 	</div>
 </footer>

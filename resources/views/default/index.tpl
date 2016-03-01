@@ -1,69 +1,57 @@
 {include file='header.tpl'}
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">{$config["appName"]}</h1>
-        <div class="row center">
-            <h5 class="header col s12 light">轻松科学上网   保护个人隐私</h5>
-        </div>
-        {if $user->isLogin}
-            <div class="row center">
-                <a href="/user" id="download-button" class="btn-large waves-effect waves-light orange">进入用户中心</a>
-            </div>
-        {else}
-        <div class="row center">
-            <a href="/auth/register" id="download-button" class="btn-large waves-effect waves-light orange">立即注册</a>
-        </div>
-        {/if}
-        <br><br>
-    </div>
-</div>
 
 
-<div class="container">
-    <div class="section">
+	<script src="/assets/public/js/jquery.min.js"></script>
 
-        <!--   Icon Section   -->
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                    <h5 class="center">Super Fast</h5>
+<div id="allmap"></div>
+{literal}
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(0,0), 3);  // 初始化地图,设置中心点坐标和地图级别
+	map.enableAutoResize() ;
+	map.setCurrentCity("香港");          // 设置地图显示的城市 此项是必须设置的
+	map.disable3DBuilding();
+	map.addEventListener("click",function(e){
+		console.log(e.point.lng + "," + e.point.lat);
+	});
+	// map.disableDragging();
+	var markers = [];
+	
+      
+      $.getJSON( "/api/nodedraft", function( data ) {
+	  var items = [];
+	  $.each( data.data, function( key, val ) {
+	    // items.push( "<li id='" + key + "'>" + val + "</li>" );
+	    // console.log(val);
+	    var ptMarker = new BMap.Marker(new BMap.Point(val.gps_land, val.gps_long));
+      	ptMarker.setLabel(new BMap.Label(val.name,{offset:new BMap.Size(0,-20)}));
+      	ptMarker.setTitle(val.status);
+      	var ov = map.getOverlays();
+      	var i;
+      	for(i=0;i<ov.length;i++)
+      	{
+      		
+      		if(ov[i].getPosition() != null){
+      			if(ov[i].getPosition().equals(ptMarker.getPosition())){
+	      			ov[i].getLabel().setOffset(new BMap.Size(0,ov[i].getLabel().getOffset().height-20));
+	      		}
+      		}
+      		
+      	}
+      	
+      	map.addOverlay(ptMarker);
+	  });
+});
+      
+</script>
 
-                    <p class="light">
-                        Bleeding edge techniques using Asynchronous I/O and Event-driven programming.
-                    </p>
-                </div>
-            </div>
+<script type="text/javascript">
 
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                    <h5 class="center">Open Source</h5>
 
-                    <p class="light">
-                        Totally free and open source. A worldwide community devoted to deliver bug-free code and long-term support.
-                    </p>
-                </div>
-            </div>
 
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                    <h5 class="center">Easy to work with</h5>
+</script>
 
-                    <p class="light">
-                        Avaliable on multiple platforms, including PC, MAC, Mobile (Android and iOS) and Routers (OpenWRT).
-                    </p>
-                </div>
-            </div>
-        </div>
+{/literal}
 
-    </div>
-    <br><br>
-
-    <div class="section">
-
-    </div>
-</div>
 {include file='footer.tpl'}

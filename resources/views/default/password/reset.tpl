@@ -56,6 +56,8 @@
 <script>
     $(document).ready(function(){
         function reset(){
+        	$("#reset").prop('disabled', true); 
+
             $.ajax({
                 type:"POST",
                 url:"/password/reset",
@@ -64,6 +66,7 @@
                     email: $("#email").val(),
                 },
                 success:function(data){
+                	// console.log(data);
                     if(data.ret == 1){
                         $("#msg-error").hide(100);
                         $("#msg-success").show(100);
@@ -73,12 +76,14 @@
                         $("#msg-error").hide(10);
                         $("#msg-error").show(100);
                         $("#msg-error-p").html(data.msg);
+                        $("#reset").prop('disabled', false); 
                     }
                 },
                 error:function(jqXHR){
                     $("#msg-error").hide(10);
                     $("#msg-error").show(100);
                     $("#msg-error-p").html("发生错误："+jqXHR.status);
+                    $("#reset").prop('disabled', false); 
                 }
             });
         }

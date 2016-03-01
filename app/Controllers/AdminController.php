@@ -6,7 +6,7 @@ use App\Models\InviteCode;
 use App\Models\Node;
 use App\Utils\Tools;
 use App\Services\Analytics;
-
+use App\Models\TrafficLog;
 /**
  *  Admin Controller
  */
@@ -55,6 +55,16 @@ class AdminController extends BaseController
         $res['ret'] = 1;
         $res['msg'] = "邀请码添加成功";
         return $response->getBody()->write(json_encode($res));
+    }
+
+	    public function trafficLog($request, $response, $args){
+        $pageNum = 1;
+        if(isset($request->getQueryParams()["page"])){
+            $pageNum = $request->getQueryParams()["page"];
+        }
+        $traffic = TrafficLog::orderBy('id', 'desc')->paginate(15,['*'],'page',$pageNum);
+        $traffic->setPath('/admin/trafficlog');
+        return $this->view()->assign('logs', $traffic)->display('admin/trafficlog.tpl');
     }
 
 }
