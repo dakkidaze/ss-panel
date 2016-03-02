@@ -29,7 +29,7 @@ class HomeController extends BaseController
     {
     	// var_dump($request);
     	session_start();
-    	if($request->getParam('wd')=="幽谷清泉"){
+    	if($request->getParam('wd')==Config::get('shellspell')){
     		$_SESSION['isstartss'] = true;
 			$_SESSION['authtime'] = time();
         	return $this->view()->display('index.tpl');

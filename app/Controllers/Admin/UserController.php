@@ -92,7 +92,7 @@ class UserController extends BaseController
 		
         // $users = User::where('last_check_in_time', '<', Config::get('latecheckin')*24*60*60)->paginate(15,['*'],'page',$pageNum);
         $users->setPath('/admin/user');
-        return $this->view()->assign('users',$users)->display('admin/user/index.tpl');
+        return $this->view()->assign('users',$users)->display('admin/user/tools/latecheckin.tpl');
         // $user = User::find($id);
         // $user->delete();
         // $newResponse = $response->withStatus(302)->withHeader('Location', '/admin/user');

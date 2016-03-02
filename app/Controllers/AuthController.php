@@ -8,7 +8,7 @@ use App\Utils\Check;
 use App\Utils\Tools;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
-
+use App\Services\Password;
 use App\Utils\Hash;
 use App\Services\Auth;
 use App\Models\User;
@@ -33,6 +33,19 @@ class AuthController extends BaseController
         return $this->view()->display('auth/login.tpl');
     }
 
+	public function loginMsg($request, $response, $args)
+    {
+    	session_start();
+    	
+    	if((Config::get('shell')=='true')&&(!isset($_SESSION['isstartss']) || !isset($_SESSION['authtime']) || ($_SESSION['authtime'] < (time()-Config::get('authtimeout'))))){
+        	return $this->view()->display('baidu.tpl');
+		}else{
+			$_SESSION['authtime'] = time();
+		}
+		
+        return $this->view()->assign('code',$args['message'])->display('auth/login.tpl');
+    }
+
     public function loginHandle($request, $response, $args)
     {
         // $data = $request->post('sdf');
@@ -50,11 +63,19 @@ class AuthController extends BaseController
             return $response->getBody()->write(json_encode($rs));
         }
 
+		
         if (!Hash::checkPassword($user->pass,$passwd)){
             $rs['ret'] = 0;
             $rs['msg'] = "402 郵箱或者密碼錯誤";
             return $response->getBody()->write(json_encode($rs));
         }
+		
+		if($user->enable == 0){
+			 $rs['ret'] = 0;
+            $rs['msg'] = "403 帳號未啟動";
+            return $response->getBody()->write(json_encode($rs));
+		}
+		
         // @todo
         $time =  3600*24;
         if($rememberMe){
@@ -135,16 +156,27 @@ class AuthController extends BaseController
         $user->pass = Hash::passwordHash($passwd);
         $user->passwd = Tools::genRandomChar(6);
         $user->port = Tools::getLastPort()+1;
+		$user->enable = 0;
         $user->t = 0;
         $user->u = 0;
         $user->d = 0;
         $user->transfer_enable = Tools::toGB(Config::get('defaultTraffic'));
+		
+		if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+		   $user->reg_ip = "HTTP_CLIENT_IP: ". $_SERVER['HTTP_CLIENT_IP'];
+		}else if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+		   $user->reg_ip = "HTTP_X_FORWARDED_FOR: ".$_SERVER['HTTP_X_FORWARDED_FOR'];
+		}else{
+		   $user->reg_ip = "REMOTE_ADDR: ".$_SERVER['REMOTE_ADDR'];
+		}
+		
         $user->invite_num = Config::get('inviteNum');
         $user->ref_by = $c->user_id;
 
         if($user->save()){
+        	Password::sendActiveEmail($email, $user->id, md5($user->pass.$user->passwd));
             $res['ret'] = 1;
-            $res['msg'] = "註冊成功";
+            $res['msg'] = "註冊成功，請檢查郵箱";
             $c->delete();
             return $response->getBody()->write(json_encode($res));
         }

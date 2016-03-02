@@ -62,6 +62,7 @@ class PasswordController extends BaseController
         // reset password
         $hashPassword = Hash::passwordHash($password);
         $user->pass = $hashPassword;
+		$user->enable = '1';
         if(!$user->save()){
             $rs['ret'] = 0;
             $rs['msg'] = '重置失败,请重试';
@@ -71,4 +72,43 @@ class PasswordController extends BaseController
         $rs['msg'] = '重置成功';
         return $response->getBody()->write(json_encode($rs));
     }
+
+	public function active($request, $response, $args){
+			$id = $args['id'];
+	        $tokenStr = $args['token'];
+	        // check token
+	
+	        $user = User::where('id',$id)->first();
+	        if ($user == null){
+	            $rs['ret'] = 0;
+	            $rs['msg'] = '啟動失敗';
+	            $newResponse = $response->withStatus(302)->withHeader('Location', '/auth/login/'.$rs['msg']);
+        		return $newResponse;
+	        }
+	
+	        //check ative token
+	        $matchToken = md5($user->pass.$user->passwd);
+			if($tokenStr != $matchToken){
+				$rs['ret'] = 0;
+	            $rs['msg'] = '啟動失敗';
+	            $newResponse = $response->withStatus(302)->withHeader('Location', '/auth/login/'.$rs['msg']);
+        		return $newResponse;
+			}
+			
+			$user->enable = '1';
+			
+	        if(!$user->save()){
+	            $rs['ret'] = 0;
+	            $rs['msg'] = '啟動失敗';
+	            // return $response->getBody()->write(json_encode($rs));
+	            $newResponse = $response->withStatus(302)->withHeader('Location', '/auth/login/'.$rs['msg']);
+        		return $newResponse;
+	        }
+	        $rs['ret'] = 1;
+	        $rs['msg'] = '重置成功';
+	        // return $response->getBody()->write(json_encode($rs));
+	        $newResponse = $response->withStatus(302)->withHeader('Location', '/auth/login');
+        	return $newResponse;
+	    }
+
 }

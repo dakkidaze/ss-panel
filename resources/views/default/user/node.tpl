@@ -36,13 +36,13 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="info-box">
-                                        <span class="info-box-icon bg-aqua"><i class="fa fa-server"></i></span>
+                                        <a href="./node/{$node->id}"><span class="info-box-icon bg-aqua"><i class="fa fa-server"></i></span></a>
 
                                         <div class="info-box-content">
                                             <div class=row>
                                                 <div class="col-sm-6">
                                                     <div class="info-box-number">
-                                                        <a href="./node/{$node->id}">{$node->name}</a> <sub><span
+                                                        <a href="./node/{$node->id}">{$node->name} <i class="fa fa-exchange"></i> 現時({$node->avgFlow()},{$node->avgPpl()}人)</a> <sub><span
                                                                     class="label label-success">{$node->status}</span></sub>
                                                     </div>
 
@@ -57,7 +57,7 @@
                                                         </div>
                                                         <div class="col-xs-4 col-sm-2">密碼：</div>
                                                         <div class="col-xs-8 col-sm-4"><span
-                                                                    class="label label-danger">{$user->passwd}</span>
+                                                                    class="label label-danger" style="text-transform: none;">{$user->passwd}</span>
                                                         </div>
                                                         <div class="col-xs-4 col-sm-2">加密：</div>
                                                         <div class="col-xs-8 col-sm-4">

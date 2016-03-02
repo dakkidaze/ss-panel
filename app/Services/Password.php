@@ -35,6 +35,17 @@ class Password
         return true;
     }
 
+	public static function sendActiveEmail($email, $id ,$activetoken){
+        
+        $subject = Config::get('appName')." Account Active";
+        $text    = '請訪問此鏈接申請啟動帳號'.Config::get('baseUrl')."/password/active/".$id."/".$activetoken;
+        try{
+            Mail::send($email,$subject,$text);
+        }catch (Exception $e){
+            return false;
+        }
+        return true;
+    }
     public static function resetBy($token,$password){
 
     }

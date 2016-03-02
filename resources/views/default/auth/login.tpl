@@ -5,7 +5,7 @@
         <a href="#"><b>{$config['appName']}</b></a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">登录到用户中心</p>
+        <p class="login-box-msg">登录到用户中心{if (isset($code))}{$code}{/if}</p>
 
         <form>
             <div class="form-group has-feedback">
@@ -109,5 +109,14 @@
         });
     })
 </script>
+{if (isset($code))}
+<script>
+$(function (){
+            $("#msg-error").show(100);
+            $("#msg-error-p").html({$code});
+    });
+</script>
+{/if}
+
 </body>
 </html>

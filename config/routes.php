@@ -74,6 +74,7 @@ $app->group('/user', function () {
 $app->group('/auth', function () {
     $this->get('/login', 'App\Controllers\AuthController:login');
     $this->post('/login', 'App\Controllers\AuthController:loginHandle');
+	$this->get('/login/{message}', 'App\Controllers\AuthController:loginMsg');
     $this->get('/register', 'App\Controllers\AuthController:register');
     $this->post('/register', 'App\Controllers\AuthController:registerHandle');
     $this->get('/logout', 'App\Controllers\AuthController:logout');
@@ -85,6 +86,7 @@ $app->group('/password', function () {
     $this->post('/reset', 'App\Controllers\PasswordController:handleReset');
     $this->get('/token/{token}', 'App\Controllers\PasswordController:token');
     $this->post('/token/{token}', 'App\Controllers\PasswordController:handleToken');
+	$this->get('/active/{id}/{token}', 'App\Controllers\PasswordController:active');
 })->add(new Guest());
 
 // Admin
