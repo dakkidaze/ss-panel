@@ -24,7 +24,7 @@ change front_currency and end_currency in .env to match the Credit Name
 
 3: Modify the Transfer Log setup
 
-* MUST use [ACGSSserver](https://github.com/windshadowlam/shadowsocks/tree/manyuser) to active
+* MUST use [ACGSSserver](https://github.com/windshadowlam/shadowsocks/tree/manyuser) (<- not yet update) to active
 
 4: UI updates, Analytics Update
 
