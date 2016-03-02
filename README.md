@@ -5,6 +5,14 @@ Let's talk about cat.  Base on [sspanel](https://github.com/orvice/ss-panel)
 ## About
 
 Please visit [releases pages](https://github.com/windshadowlam/ss-panel) to download ACGSSpanel.
+Addition Function:
+1: Add Baidu Look Shell
+```
+change shell in .env to true
+change shellspell for matching keyword
+Only user search keyword in your front page can go in the ACGSS Panel
+```
+
 
 ## Requirements
 
