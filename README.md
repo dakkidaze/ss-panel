@@ -36,6 +36,7 @@ change front_currency and end_currency in .env to match the Credit Name
 * Late Signin user will show on Admin Panel, day set in "latecheckin" in .env
 * Change of info un Admin Panel
 * Edit Credit in Admin/User/Edit view
+* Traffic Log for Admin to view all user
 * and more
 
 
