@@ -160,14 +160,14 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- <div class="form-group">
+                                    <div class="form-group">
                                         <label class="col-sm-3 control-label">余額</label>
 
                                         <div class="col-sm-9">
                                             <input class="form-control" id="credit" type="number"
                                                    value="{$user->credit}">
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </fieldset>
                             </div>
                         </div>
