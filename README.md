@@ -1,14 +1,10 @@
-# ss-panel
+# ss-panel (Alan Version)
 
-Let's talk about cat.  Base on [LightFish](https://github.com/OzCat/LightFish)
-
-[![Join the chat at https://gitter.im/orvice/ss-panel](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/orvice/ss-panel?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[Releases](https://plus.google.com/communities/112308980947577664041) |[Follow on Trello](https://trello.com/b/dr62AtYI/ss-panel) | [Google+](https://plus.google.com/communities/112308980947577664041)
+Let's talk about cat.  Base on [sspanel](https://github.com/orvice/ss-panel)
 
 ## About
 
-Please visit [releases pages](https://github.com/orvice/ss-panel/releases) to download ss-panel.
+Please visit [releases pages](https://github.com/windshadowlam/ss-panel) to download ACGSSpanel.
 
 ## Requirements
 
@@ -27,7 +23,7 @@ Please visit [releases pages](https://github.com/orvice/ss-panel/releases) to do
 ### Step 0
 
 ```
-git clone https://github.com/orvice/ss-panel.git
+git clone https://github.com/windshadowlam/ss-panel.git
 ```
 
 ### Step 1
@@ -55,6 +51,11 @@ Import the sql to you mysql database.
 
 ### Step 4
 
+Vestacp Apache Config example:
+```
+DocumentRoot /home/admin/web/domain.tld/public_html/public
+```
+
 Nginx Config example:
 
 if you download ss-panel on path /home/www/ss-panel
@@ -69,7 +70,7 @@ location / {
     
 ```
 
-### Step 5 Config
+### Step 5 More Config
 
 view config guide on [wiki](https://github.com/orvice/ss-panel/wiki/v3-Config)
 
