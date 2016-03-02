@@ -108,3 +108,6 @@ location / {
 
 view config guide on [wiki](https://github.com/orvice/ss-panel/wiki/v3-Config)
 
+###  More Guide
+
+* Install for [CentOS](https://github.com/windshadowlam/ss-panel/wiki/Full-Install-Guide-(Centos))
