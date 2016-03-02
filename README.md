@@ -5,13 +5,38 @@ Let's talk about cat.  Base on [sspanel](https://github.com/orvice/ss-panel)
 ## About
 
 Please visit [releases pages](https://github.com/windshadowlam/ss-panel) to download ACGSSpanel.
+
 Addition Function:
+
 1: Add Baidu Look Shell
+
 ```
 change shell in .env to true
 change shellspell for matching keyword
 Only user search keyword in your front page can go in the ACGSS Panel
 ```
+
+2: Package for additional bandwidth
+
+```
+change front_currency and end_currency in .env to match the Credit Name
+```
+
+3: Modify the Transfer Log setup
+
+* MUST use [ACGSSserver](https://github.com/windshadowlam/shadowsocks/tree/manyuser) to active
+
+4: UI updates, Analytics Update
+
+* Frontpage using Baidu map to point out Server location, control by `ss_node` table gps_land and gps_long field. (Click on the map can get the location in console log, remember update Baidu Map API Key)
+* As a HongKonger, I convert most of the part to Traditional Chinese.
+* Editing of SS Method base on "changeSSMethod" in .env
+* Adding Calculation of speed and user in Node List
+* Value adding function is work-in-progress, only Admin can view now
+* Late Signin user will show on Admin Panel, day set in "latecheckin" in .env
+* Change of info un Admin Panel
+* Edit Credit in Admin/User/Edit view
+* and more
 
 
 ## Requirements
