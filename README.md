@@ -25,8 +25,13 @@ change front_currency and end_currency in .env to match the Credit Name
 3: Modify the Transfer Log setup
 
 * MUST use [ACGSSserver](https://github.com/windshadowlam/shadowsocks/tree/manyuser) (<- not yet update) to active
+ 
+4: Activation needed for new account
 
-4: UI updates, Analytics Update
+Email will be sent out with link to activate their account.
+
+
+5: UI updates, Analytics Update, and other
 
 * Frontpage using Baidu map to point out Server location, control by `ss_node` table gps_land and gps_long field. (Click on the map can get the location in console log, remember update Baidu Map API Key)
 * As a HongKonger, I convert most of the part to Traditional Chinese.
