@@ -1,4 +1,4 @@
-# ss-panel (Alan Version)
+# ACGSS-panel
 
 Let's talk about cat.  Base on [sspanel](https://github.com/orvice/ss-panel)
 
