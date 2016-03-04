@@ -8,6 +8,7 @@ namespace App\Services;
 
 use App\Services\Mail\Mailgun;
 use App\Services\Mail\Smtp;
+use App\Services\Mail\SendgridAPI;
 
 class Mail
 {
@@ -25,6 +26,9 @@ class Mail
                 return $mail->send($to,$subject,$text);
             case "smtp":
                 $mail = new Smtp();
+                return $mail->send($to,$subject,$text);
+			case "sendgrid":
+                $mail = new SendgridAPI();
                 return $mail->send($to,$subject,$text);
             default:
                 // @TODO default action

@@ -65,7 +65,7 @@
                     <div class="icon">
                         <i class="ion ion-alert-circled"></i>
                     </div>
-                    <a href="admin/user/tool/latecheckin" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i> </a>
+                    <a href="admin/user/tools/latecheckin" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i> </a>
                 </div>
 
             </div>

@@ -5,7 +5,7 @@
         <a href="#"><b>{$config['appName']}</b></a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">登录到用户中心{if (isset($code))}{$code}{/if}</p>
+        <p class="login-box-msg">登录到用户中心</p>
 
         <form>
             <div class="form-group has-feedback">
